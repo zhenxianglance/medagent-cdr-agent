@@ -1,0 +1,884 @@
+[
+    {
+        "label": "distal_radial_fracture",
+        "func_name": "drf_pred",
+        "variables": {
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "int"
+            },
+            "wrist_swelling": {
+                "meaning": "Presence of swelling at the wrist",
+                "type": "bool"
+            },
+            "visible_deformity": {
+                "meaning": "Visible deformation of the wrist",
+                "type": "bool"
+            },
+            "radius_tender": {
+                "meaning": "Distal radius tender to palpation",
+                "type": "bool"
+            },
+            "palmar_flexion_pain": {
+                "meaning": "Pain on palmar flexion of the wrist",
+                "type": "bool"
+            },
+            "supination_pain": {
+                "meaning": "Pain on supination of the wrist",
+                "type": "bool"
+            },
+            "radioulnar_ballottement_pain": {
+                "meaning": "Pain on radioulnar ballottement test",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The decision rule outlined is used to evaluate the likelihood of a distal radial fracture in patients based on specific symptoms and physical examination findings related to wrist injuries. The rule determines that there is a high likelihood of a distal radial fracture if any of the following conditions are present: swelling at the wrist, visible deformity of the wrist, tenderness at the distal radius, pain upon palmar flexion, pain during wrist supination, or pain on the radioulnar ballottement test. If none of these symptoms or signs are observed, the rule suggests a low likelihood of a distal radial fracture. This approach helps in quickly assessing the need for further diagnostic imaging or treatment based on the presence of key clinical indicators associated with wrist injuries.",
+        "positive_label": [
+            "High likelihood of distal radial fracture"
+        ],
+        "negative_label": [
+            "Low likelihood of distal radial fracture"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_drf_pred",
+        "rule_text_augmented": "The decision rule outlined is used to evaluate the likelihood of a distal radial fracture in patients based on specific symptoms and physical examination findings related to wrist injuries. The rule determines that there is a high likelihood of a distal radial fracture if any of the following conditions are present: swelling at the wrist, visible deformity of the wrist, tenderness at the distal radius, pain upon palmar flexion, pain during wrist supination, or pain on the radioulnar ballottement test. If none of these symptoms or signs are observed, the rule suggests a low likelihood of a distal radial fracture. This approach helps in quickly assessing the need for further diagnostic imaging or treatment based on the presence of key clinical indicators associated with wrist injuries.\ndistal radial fracture | distal radius fracture | distal forearm fracture | DRF | broken radius | wrist fracture | radial fracture | lower radius fracture | fx distal radius | radius fx | wrist fx\n\nwrist swelling | swollen wrist | wrist edema | wrist puffiness | enlarged wrist | inflamed wrist | wrist engorgement | distended wrist | wrist effusion | wrist inflam | wrist sw\n\nvisible deformation of the wrist | abnormal wrist shape | wrist misalignment | wrist displacement | crooked wrist | wrist angulation | wrist distortion | wrist deformity | wrist def\n\ndistal radius tender to palpation | distal radius tenderness | pain on touch at distal radius | sore distal radius | forearm tenderness near wrist | painful distal radius | radius bone tenderness | radius TTP | distal radius TTP\n\npain on palmar flexion of the wrist | pain when bending wrist forward | wrist flexion pain | pain on palm-down movement | flexion-induced wrist pain | anterior wrist pain | wrist bending discomfort | pain with forward wrist motion | limited ROM on flexion | wrist flex pain\n\npain on supination of the wrist | pain on palm-up rotation | wrist supination pain | discomfort turning wrist | supination-related pain | pain on external rotation | difficulty supinating | aching with supination | pain with outward wrist rotation | limited ROM on supination | wrist sup pain\n\nradioulnar ballottement pain | DRUJ pain | pain on DRUJ test | wrist instability pain | pain with radius-ulna movement | radioulnar joint tenderness | forearm instability pain | DRUJ tenderness | pain with distal radioulnar joint motion | DRUJ instability | DRUJ TTP"
+    },
+    {
+        "label": "wrist_fracture",
+        "func_name": "wf_pred",
+        "variables": {
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "int"
+            },
+            "sex": {
+                "meaning": "Patient's biological sex",
+                "type": "string"
+            },
+            "wrist_swelling": {
+                "meaning": "Presence of swelling at the wrist",
+                "type": "bool"
+            },
+            "snuffbox_swelling": {
+                "meaning": "Swelling of the anatomical snuffbox",
+                "type": "bool"
+            },
+            "visible_deformity": {
+                "meaning": "Visible deformation of the wrist",
+                "type": "bool"
+            },
+            "radius_tender": {
+                "meaning": "Distal radius tender to palpation",
+                "type": "bool"
+            },
+            "radial_deviation_pain": {
+                "meaning": "Pain on radial deviation of the wrist",
+                "type": "bool"
+            },
+            "thumb_compression_pain": {
+                "meaning": "Pain on axial compression of the thumb",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The provided decision rule is a sophisticated method designed to assess the likelihood of a wrist fracture in patients based on various clinical indicators and demographic information. The rule incorporates multiple variables such as the patient's age, sex, and specific symptoms like wrist swelling, swelling of the anatomical snuffbox, visible deformity, tenderness of the distal radius, pain on radial deviation of the wrist, and pain upon axial compression of the thumb.\n\nThe decision-making process involves calculating a probability score using a logistic regression model with coefficients assigned to each variable based on empirical data from the Amsterdam Wrist Rules study. The variables contributing to the score include age, which slightly increases the probability with each year, and biological sex, with males having a higher baseline probability of fracture. Symptoms such as wrist swelling, visible deformity, and tenderness significantly raise the likelihood of a fracture, whereas pain on thumb compression slightly decreases it.\n\nThe model uses a cutoff probability of 21% to differentiate between high and low likelihoods of wrist fracture. If the computed probability from the model exceeds this threshold, the rule suggests a high likelihood of fracture; otherwise, it indicates a low likelihood. This rule helps streamline decision-making in clinical settings by providing a quantitative tool to evaluate the necessity for further diagnostic imaging based on a combination of demographic and clinical factors.",
+        "positive_label": [
+            "High likelihood of wrist fracture"
+        ],
+        "negative_label": [
+            "Low likelihood of wrist fracture"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_wf_pred",
+        "rule_text_augmented": "The provided decision rule is a sophisticated method designed to assess the likelihood of a wrist fracture in patients based on various clinical indicators and demographic information. The rule incorporates multiple variables such as the patient's age, sex, and specific symptoms like wrist swelling, swelling of the anatomical snuffbox, visible deformity, tenderness of the distal radius, pain on radial deviation of the wrist, and pain upon axial compression of the thumb.\n\nThe decision-making process involves calculating a probability score using a logistic regression model with coefficients assigned to each variable based on empirical data from the Amsterdam Wrist Rules study. The variables contributing to the score include age, which slightly increases the probability with each year, and biological sex, with males having a higher baseline probability of fracture. Symptoms such as wrist swelling, visible deformity, and tenderness significantly raise the likelihood of a fracture, whereas pain on thumb compression slightly decreases it.\n\nThe model uses a cutoff probability of 21% to differentiate between high and low likelihoods of wrist fracture. If the computed probability from the model exceeds this threshold, the rule suggests a high likelihood of fracture; otherwise, it indicates a low likelihood. This rule helps streamline decision-making in clinical settings by providing a quantitative tool to evaluate the necessity for further diagnostic imaging based on a combination of demographic and clinical factors.\nwrist fracture | distal radial fracture | distal radius fracture | distal forearm fracture | DRF | broken radius | wrist break | fractured wrist | radius fracture | Colles fracture | Smith fracture | Barton fracture\n\nwrist swelling | swollen wrist | wrist puffiness | wrist edema | enlarged wrist | inflamed wrist | wrist engorgement | distended wrist | wrist effusion\n\nsnuffbox swelling | swelling of anatomical snuffbox | snuffbox edema | snuffbox puffiness | inflamed snuffbox | engorged snuffbox | distended snuffbox | scaphoid swelling\n\nvisible deformation of the wrist | abnormal wrist shape | wrist misalignment | wrist displacement | crooked wrist | wrist angulation | wrist distortion | wrist abnormality | wrist dislocation\n\ndistal radius tender to palpation | pain on touch at distal radius | sore distal radius | tenderness in forearm near wrist | painful distal radius | radius bone tenderness | distal radius TTP\n\npain on radial deviation of the wrist | pain when moving wrist sideways | wrist deviation pain | radial movement pain | pain on thumb-side movement | wrist deviation soreness | restricted wrist deviation | limited ROM on deviation\n\nthumb compression pain | pain on axial compression of the thumb | thumb pressure pain | pain with thumb pressing | thumb squeeze pain | discomfort on thumb compression | thumb axial pain | pain on thumb loading | scaphoid compression pain"
+    },
+    {
+        "label": "c_spine_injury",
+        "func_name": "cspine_pred",
+        "variables": {
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "float"
+            },
+            "gcs": {
+                "meaning": "Glasgow Coma Scale score",
+                "type": "int"
+            },
+            "hemodynamically_stable": {
+                "meaning": "Patient is hemodynamically stable",
+                "type": "bool"
+            },
+            "acute_paralysis": {
+                "meaning": "Presence of acute paralysis",
+                "type": "bool"
+            },
+            "cervical_spine_history": {
+                "meaning": "History of cervical spine disease or surgery",
+                "type": "bool"
+            },
+            "dangerous_mechanism": {
+                "meaning": "High-risk injury mechanism",
+                "type": "bool"
+            },
+            "extremity_paresthesias": {
+                "meaning": "Presence of extremity paresthesias",
+                "type": "bool"
+            },
+            "neck_pain_delayed": {
+                "meaning": "Presence of delayed-onset neck pain",
+                "type": "bool"
+            },
+            "ambulatory": {
+                "meaning": "Patient is ambulatory or in sitting position",
+                "type": "bool"
+            },
+            "no_midline_ttp": {
+                "meaning": "Absence of midline cervical tenderness to palpation",
+                "type": "bool"
+            },
+            "rom_45_degrees": {
+                "meaning": "Able to actively rotate neck 45 degrees to each side",
+                "type": "bool"
+            },
+            "simple_mvc": {
+                "meaning": "Injury mechanism related to being rearended in a MVC, EXCLUDING pushed into oncoming traffic, hit by bus or large truck, rollover, or hit by high speed vehicle",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The decision rule for evaluating the necessity of CT scans in assessing potential cervical spine injuries integrates several patient factors and injury characteristics. Patients are immediately considered for CT scans if they are under 16, have a Glasgow Coma Scale score other than 15, are hemodynamically unstable, exhibit acute paralysis, or have a history of cervical spine disease or surgery. For patients over 65, those experiencing extremity paresthesias, or involved in high-risk injury mechanisms, CT scanning is also recommended due to increased risk. If a patient has delayed-onset neck pain, is not ambulatory, has midline cervical tenderness, or was involved in a simple MVC without being pushed into oncoming traffic, hit by a bus or large truck, involved in a rollover, or hit by a high-speed vehicle, a CT is advised. Furthermore, if a patient cannot actively rotate their neck 45 degrees to each side, this limitation suggests a potential injury, prompting a CT scan recommendation. If none of these conditions apply, the rule suggests that a CT scan is not necessary, helping to manage resources efficiently and reduce unnecessary radiation exposure.",
+        "positive_label": [
+            "Outside CDR criteria - Consider CT",
+            "CT recommended"
+        ],
+        "negative_label": [
+            "CT not recommended"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_cspine_pred",
+        "rule_text_augmented": "The decision rule for evaluating the necessity of CT scans in assessing potential cervical spine injuries integrates several patient factors and injury characteristics. Patients are immediately considered for CT scans if they are under 16, have a Glasgow Coma Scale score other than 15, are hemodynamically unstable, exhibit acute paralysis, or have a history of cervical spine disease or surgery. For patients over 65, those experiencing extremity paresthesias, or involved in high-risk injury mechanisms, CT scanning is also recommended due to increased risk. If a patient has delayed-onset neck pain, is not ambulatory, has midline cervical tenderness, or was involved in a simple MVC without being pushed into oncoming traffic, hit by a bus or large truck, involved in a rollover, or hit by a high-speed vehicle, a CT is advised. Furthermore, if a patient cannot actively rotate their neck 45 degrees to each side, this limitation suggests a potential injury, prompting a CT scan recommendation. If none of these conditions apply, the rule suggests that a CT scan is not necessary, helping to manage resources efficiently and reduce unnecessary radiation exposure.\ncervical spine trauma | C-spine trauma | neck injury | cervical injury | cervical trauma | neck trauma | cervical fracture | cervical spinal injury | C-spine fracture\n\nGCS | Glasgow Coma Scale | GCS score | coma scale | neurological status | consciousness level\n\nhemodynamically stable | stable BP | stable vitals | stable hemodynamics | cardiovascular stability | circulatory stability\n\nacute paralysis | sudden paralysis | immediate paralysis | rapid-onset paralysis | new paralysis | loss of movement\n\ncervical spine history | history of C-spine disease | history of cervical surgery | past neck issues | previous cervical problems | prior neck surgery | cervical medical history\n\ndangerous mechanism | high-risk injury | hazardous mechanism | risky injury | severe trauma mechanism\n\nmotorized recreational vehicles | ATVs | all-terrain vehicles | motorbikes | dirt bikes | recreational vehicle crash\n\nfall > 3ft or 5 stairs | fall from height | fall over 3 feet | fall down stairs | significant fall | high fall\n\naxial load to head | head compression injury | vertical force to head | top-down head impact | direct head pressure\n\ndiving | diving accident | dive injury | diving mishap | water impact injury\n\nbicycle collision | bike crash | cycling accident | bicycle accident\n\nMVC high speed | high-speed MVC | fast car crash | high-velocity collision | high-speed motor vehicle crash | MVA\n\nrollover | vehicle rollover | car rollover | rollover crash\n\nejection | ejected from vehicle | thrown from vehicle | ejection accident\n\nextremity paresthesias | limb tingling | arm or leg numbness | extremity numbness | limb paresthesia\n\nneck pain delayed | delayed-onset neck pain | late neck pain | neck pain after delay | post-injury neck pain\n\npatient is ambulatory | patient can walk | patient mobile | patient is walking | patient able to ambulate\n\npatient is in sitting position | patient seated | patient sitting | patient is seated | patient upright\n\nno midline TTP | no midline cervical tenderness | no midline neck pain | no central neck tenderness | no midline C-spine pain\n\nROM 45 degrees | able to rotate neck 45 degrees | neck rotation 45 degrees | 45-degree neck ROM | full neck rotation\n\nsimple MVC | low-impact car crash | minor rear-end collision | simple motor vehicle accident | minor MVC"
+    },
+    {
+        "label": "ct_head",
+        "func_name": "ct_head_pred",
+        "variables": {
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "int"
+            },
+            "gcs_initial": {
+                "meaning": "Initial Glasgow Coma Scale score",
+                "type": "int"
+            },
+            "gcs_2hr": {
+                "meaning": "Glasgow Coma Scale score at 2 hours post injury",
+                "type": "int"
+            },
+            "has_coagulopathy": {
+                "meaning": "Patient has coagulopathy or is on anti-coagulation",
+                "type": "bool"
+            },
+            "had_seizure": {
+                "meaning": "Patient had a seizure",
+                "type": "bool"
+            },
+            "vomiting_episodes": {
+                "meaning": "Number of vomiting episodes",
+                "type": "int"
+            },
+            "suspected_skull_fracture": {
+                "meaning": "Suspected open or depressed skull fracture",
+                "type": "bool"
+            },
+            "signs_of_basal_skull_fracture": {
+                "meaning": "Any signs of basal skull fracture (hemotympanum, raccoon eyes, CSF otorrhea/rhinorrhea, Battle's sign)",
+                "type": "bool"
+            },
+            "retrograde_amnesia_duration": {
+                "meaning": "Duration of retrograde amnesia in minutes",
+                "type": "int"
+            },
+            "dangerous_mechanism": {
+                "meaning": "Presence of dangerous mechanism (pedestrian struck, ejection from vehicle, fall from >3 feet/5 stairs)",
+                "type": "bool"
+            },
+            "meets_inclusion": {
+                "meaning": "Whether patient meets basic inclusion criteria (blunt head trauma + LOC/amnesia/disorientation)",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The decision rule for determining the need for a CT scan following head trauma is designed to ensure the application of imaging resources is both effective and efficient. The rule first checks if a patient meets basic inclusion criteria, which includes having experienced blunt head trauma accompanied by loss of consciousness, amnesia, or disorientation, along with an initial Glasgow Coma Scale (GCS) score between 13 and 15, being 16 years or older, and not having coagulopathy or seizures. If these criteria are not met, the rule is not applicable. \n\nFor patients meeting the inclusion criteria, a CT scan is mandated under high-risk conditions, which are defined by any of the following: the patient is 65 years or older, has more than two episodes of vomiting, presents with a suspected open or depressed skull fracture, shows signs of a basal skull fracture (such as hemotympanum, raccoon eyes, CSF otorrhea/rhinorrhea, Battle's sign), has a GCS score less than 15 at two hours post-injury, experiences retrograde amnesia lasting more than 30 minutes, or was involved in a dangerous mechanism of injury (like being struck as a pedestrian, ejected from a vehicle, or falling from more than 3 feet or 5 stairs). If none of these high-risk conditions are present, a CT scan is considered not required, thereby reducing unnecessary radiation exposure and optimizing the use of medical resources.",
+        "positive_label": [
+            "CT head indicated"
+        ],
+        "negative_label": [
+            "CT head not required",
+            "Rule not applicable - inclusion criteria not met"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_ct_head_pred",
+        "rule_text_augmented": "The decision rule for determining the need for a CT scan following head trauma is designed to ensure the application of imaging resources is both effective and efficient. The rule first checks if a patient meets basic inclusion criteria, which includes having experienced blunt head trauma accompanied by loss of consciousness, amnesia, or disorientation, along with an initial Glasgow Coma Scale (GCS) score between 13 and 15, being 16 years or older, and not having coagulopathy or seizures. If these criteria are not met, the rule is not applicable. \n\nFor patients meeting the inclusion criteria, a CT scan is mandated under high-risk conditions, which are defined by any of the following: the patient is 65 years or older, has more than two episodes of vomiting, presents with a suspected open or depressed skull fracture, shows signs of a basal skull fracture (such as hemotympanum, raccoon eyes, CSF otorrhea/rhinorrhea, Battle's sign), has a GCS score less than 15 at two hours post-injury, experiences retrograde amnesia lasting more than 30 minutes, or was involved in a dangerous mechanism of injury (like being struck as a pedestrian, ejected from a vehicle, or falling from more than 3 feet or 5 stairs). If none of these high-risk conditions are present, a CT scan is considered not required, thereby reducing unnecessary radiation exposure and optimizing the use of medical resources.\nCT head | head CT | cranial CT | brain CT | CTH | head imaging | computed tomography of the head\n\nblunt head trauma | closed head injury | non-penetrating head injury | head contusion | head impact injury | head blunt force trauma | minor head trauma | head trauma\n\nloss of consciousness | LOC | transient LOC | syncope | fainting | blackout | passing out | brief unconsciousness\n\namnesia | memory loss | retrograde amnesia | anterograde amnesia | forgetfulness | inability to recall | post-traumatic amnesia | memory impairment\n\ndisorientation | confusion | altered mental status | AMS | lack of orientation | cognitive disorientation | mental status change | acute confusion\n\ninitial GCS | initial Glasgow Coma Scale | first GCS assessment | initial consciousness level | presenting GCS | admission GCS\n\nGCS 2hr | 2-hour Glasgow Coma Scale | GCS at 2 hours | follow-up GCS | delayed GCS assessment\n\nhas coagulopathy | bleeding disorder | clotting disorder | impaired coagulation | coagulopathy present | abnormal clotting function\n\nis on anticoagulation | taking blood thinners | on anticoagulant therapy | anticoagulated | using anticoagulants | antithrombotic therapy\n\nseizure | convulsion | post-traumatic seizure | fit | epileptic episode | ictal event | seizure activity\n\nvomiting episodes | emesis | nausea and vomiting | retching | persistent vomiting | recurrent emesis\n\nsuspected skull fracture | possible skull fracture | potential cranial fracture | likely skull break | suspected cranial fracture | head fracture\n\nsigns of basal skull fracture | indicators of basilar skull fracture | symptoms of base of skull fracture | basilar fracture signs | skull base fracture\n\nhemotympanum | blood in the tympanic cavity | ear bleeding | tympanic hemorrhage | bloody eardrum\n\nraccoon eyes | periorbital ecchymosis | bilateral periorbital bruising | panda eyes | orbital bruising\n\nCSF otorrhea | cerebrospinal fluid ear discharge | CSF leakage from ear | ear CSF leak | otic CSF leak | clear ear drainage\n\nCSF rhinorrhea | cerebrospinal fluid nasal discharge | CSF leakage from nose | nasal CSF leak | clear nasal discharge\n\nBattle's sign | mastoid ecchymosis | postauricular bruising | bruising behind the ear | mastoid bruising\n\nduration of retrograde amnesia | length of memory loss | time span of amnesia | period of retrograde amnesia | amnesia duration | memory gap\n\ndangerous mechanism | high-risk injury mechanism | severe trauma mechanism | hazardous injury cause | perilous mechanism\n\npedestrian struck | pedestrian hit by vehicle | auto vs pedestrian accident | pedestrian collision | struck by motor vehicle\n\nejection from vehicle | ejected from car | thrown from vehicle | motor vehicle ejection | high-impact ejection | MVC | MVA\n\nfall from >3 feet or 5 stairs | significant fall | fall from height | high-risk fall | fall over 3 feet | fall down stairs | elevated fall injury"
+    },
+    {
+        "label": "bcvi",
+        "func_name": "bcvi_pred",
+        "variables": {
+            "arterial_hemorrhage": {
+                "meaning": "Potential arterial hemorrhage from neck, nose, or mouth",
+                "type": "bool"
+            },
+            "cervical_bruit_under_50": {
+                "meaning": "Cervical bruit in patient under 50 years of age",
+                "type": "bool"
+            },
+            "expanding_hematoma": {
+                "meaning": "Expanding cervical hematoma",
+                "type": "bool"
+            },
+            "focal_neurologic_deficit": {
+                "meaning": "Focal neurologic deficit including TIA, hemiparesis, vertebrobasilar symptoms, Horner syndrome",
+                "type": "bool"
+            },
+            "neurologic_deficit_incongruous": {
+                "meaning": "Neurologic deficit incongruous with head CT findings",
+                "type": "bool"
+            },
+            "stroke_on_imaging": {
+                "meaning": "Stroke seen on CT or MRI",
+                "type": "bool"
+            },
+            "high_energy_mechanism": {
+                "meaning": "Presence of high-energy transfer mechanism",
+                "type": "bool"
+            },
+            "lefort_fracture": {
+                "meaning": "Le Fort II or III displaced midface fracture",
+                "type": "bool"
+            },
+            "mandible_fracture": {
+                "meaning": "Mandible fracture",
+                "type": "bool"
+            },
+            "complex_skull_fracture": {
+                "meaning": "Complex skull fracture (e.g., involving frontal bone and orbit)",
+                "type": "bool"
+            },
+            "base_skull_fracture": {
+                "meaning": "Base of skull fracture (sphenoid, petrous temporal, clivus, occipital condyle)",
+                "type": "bool"
+            },
+            "scalp_degloving": {
+                "meaning": "Scalp degloving injury",
+                "type": "bool"
+            },
+            "cervical_spine_injury": {
+                "meaning": "Cervical spine fracture, subluxation, or ligamentous injury at any level",
+                "type": "bool"
+            },
+            "severe_tbi": {
+                "meaning": "Severe traumatic brain injury with GCS <6",
+                "type": "bool"
+            },
+            "near_hanging": {
+                "meaning": "Near hanging with hypoxic-ischemic brain injury",
+                "type": "bool"
+            },
+            "clothesline_injury": {
+                "meaning": "Clothesline type injury or seat belt abrasion with significant swelling, pain, or altered mental status",
+                "type": "bool"
+            },
+            "thoracic_injury": {
+                "meaning": "Traumatic brain injury with thoracic injuries",
+                "type": "bool"
+            },
+            "upper_rib_fractures": {
+                "meaning": "Upper rib fractures",
+                "type": "bool"
+            },
+            "thoracic_vascular_injury": {
+                "meaning": "Thoracic vascular injuries",
+                "type": "bool"
+            },
+            "cardiac_rupture": {
+                "meaning": "Blunt cardiac rupture",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The decision rule for evaluating the need for CT angiography (CTA) to assess for blunt cerebrovascular injuries (BCVI) in patients involves identifying specific high-risk signs, symptoms, and injury mechanisms. The rule recommends CTA if any of the following conditions are met: the presence of potential arterial hemorrhage from the neck, nose, or mouth; cervical bruit in patients under 50; expanding cervical hematoma; any focal neurologic deficits including transient ischemic attacks, hemiparesis, vertebrobasilar symptoms, or Horner syndrome; neurologic deficits that do not correlate with head CT findings; or visible stroke on imaging.\n\nAdditionally, if a high-energy transfer mechanism is involved, and the patient presents with any of the following: Le Fort II or III midface fractures, mandible fracture, complex skull fractures (involving the frontal bone and orbit), base of skull fractures, scalp degloving, cervical spine injuries (fracture, subluxation, or ligamentous injury), severe traumatic brain injury with a GCS score below 6, near hanging incidents with hypoxic-ischemic brain injury, significant clothesline injury or seat belt abrasion, associated thoracic injuries, upper rib fractures, thoracic vascular injuries, or blunt cardiac rupture, CTA is indicated. If none of these high-risk signs, symptoms, or mechanisms are present, the rule suggests there is no indication for CTA based on Denver criteria, helping to avoid unnecessary imaging and focus resources on high-risk patients.",
+        "positive_label": [
+            "CTA indicated to evaluate for BCVI"
+        ],
+        "negative_label": [
+            "No indication for CTA based on Denver criteria"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_bcvi_pred",
+        "rule_text_augmented": "The decision rule for evaluating the need for CT angiography (CTA) to assess for blunt cerebrovascular injuries (BCVI) in patients involves identifying specific high-risk signs, symptoms, and injury mechanisms. The rule recommends CTA if any of the following conditions are met: the presence of potential arterial hemorrhage from the neck, nose, or mouth; cervical bruit in patients under 50; expanding cervical hematoma; any focal neurologic deficits including transient ischemic attacks, hemiparesis, vertebrobasilar symptoms, or Horner syndrome; neurologic deficits that do not correlate with head CT findings; or visible stroke on imaging.\n\nAdditionally, if a high-energy transfer mechanism is involved, and the patient presents with any of the following: Le Fort II or III midface fractures, mandible fracture, complex skull fractures (involving the frontal bone and orbit), base of skull fractures, scalp degloving, cervical spine injuries (fracture, subluxation, or ligamentous injury), severe traumatic brain injury with a GCS score below 6, near hanging incidents with hypoxic-ischemic brain injury, significant clothesline injury or seat belt abrasion, associated thoracic injuries, upper rib fractures, thoracic vascular injuries, or blunt cardiac rupture, CTA is indicated. If none of these high-risk signs, symptoms, or mechanisms are present, the rule suggests there is no indication for CTA based on Denver criteria, helping to avoid unnecessary imaging and focus resources on high-risk patients.\nblunt cerebrovascular injury | BCVI | blunt vascular neck injury | blunt neck vessel injury | blunt carotid injury | blunt vertebral injury | traumatic carotid injury | traumatic vertebral artery injury | traumatic cerebrovascular injury\n\narterial hemorrhage from neck | neck arterial bleeding | cervical arterial hemorrhage | carotid artery rupture | vertebral artery rupture | neck vessel rupture\n\narterial hemorrhage from nose | nasal arterial bleeding | epistaxis with arterial source | nose artery hemorrhage | severe nasal bleed | posterior epistaxis\n\narterial hemorrhage from mouth | oral arterial bleeding | mouth artery hemorrhage | lingual artery rupture | oral cavity arterial bleed | significant oral bleeding\n\ncervical bruit | neck bruit | carotid bruit | vascular murmur in neck | abnormal neck sound | turbulent neck blood flow | audible bruit\n\nexpanding cervical hematoma | growing neck hematoma | enlarging cervical hematoma | increasing neck hematoma | progressive cervical hematoma | worsening neck swelling\n\nfocal neurologic deficit | localized neurological deficit | specific neurological impairment | focal neuro deficit | targeted neurological dysfunction | asymmetric neurological symptoms | FND\n\nTIA | transient ischemic attack | mini-stroke | temporary stroke | brief ischemic event | short-term ischemic attack | warning stroke | pre-stroke event\n\nhemiparesis | unilateral weakness | partial paralysis on one side | one-sided weakness | hemiplegia | motor deficit | contralateral weakness\n\nvertebrobasilar symptoms | VBI | vertebrobasilar insufficiency | posterior circulation symptoms | brainstem ischemia | dizziness and vertigo | ataxia and diplopia | posterior stroke symptoms\n\nHorner syndrome | Horner's syndrome | HS | oculosympathetic palsy | ptosis, miosis, anhidrosis | sympathetic chain dysfunction | disrupted sympathetic pathway\n\nneurologic deficit incongruous with head CT findings | clinical-radiological mismatch | unexplained neurological deficit | deficit not seen on CT | CT-negative neurological deficit | negative imaging but persistent symptoms\n\nstroke seen on CT | CT-confirmed stroke | stroke visible on CT scan | cerebral infarction on CT | CT-detected stroke | ischemic stroke on CT | hemorrhagic stroke on CT | CT stroke evidence\n\nstroke seen on MRI | MRI-confirmed stroke | stroke visible on MRI scan | cerebral infarction on MRI | MRI-detected stroke | acute stroke on MRI | diffusion restriction on MRI | MRI stroke evidence\n\nhigh-energy transfer mechanism | high-impact injury | high-force trauma | severe kinetic energy injury | high-velocity impact | rapid acceleration-deceleration injury | extreme blunt force trauma\n\npedestrian struck | auto vs pedestrian collision | pedestrian MVC injury | vehicle impact injury | pedestrian trauma | motor vehicle collision\n\nejection from vehicle | thrown from vehicle | motor vehicle ejection | high-impact ejection | unrestrained passenger ejection | MVC ejection | MVA\n\nfall from height | fall >3 feet | fall down stairs | significant fall | elevated fall injury | high-risk fall | GLF | fall-related head and neck trauma | ground-level fall\n\nLe Fort II displaced midface fracture | Le Fort II fracture | pyramidal fracture | midface fracture type II | Le Fort II pattern | NMF | nasomaxillary fracture\n\nLe Fort III displaced midface fracture | Le Fort III fracture | craniofacial disjunction | midface fracture type III | Le Fort III pattern | PFF | panfacial fracture | facial skeleton separation"
+    },
+    {
+        "label": "bcvi_memphis",
+        "func_name": "bcvi_memphis_pred",
+        "variables": {
+            "skull_base_carotid": {
+                "meaning": "Base of skull fracture with involvement of carotid canal",
+                "type": "bool"
+            },
+            "skull_base_petrous": {
+                "meaning": "Base of skull fracture with involvement of petrous temporal bone",
+                "type": "bool"
+            },
+            "cervical_spine_fracture": {
+                "meaning": "Presence of cervical spine fracture",
+                "type": "bool"
+            },
+            "unexplained_neuro_findings": {
+                "meaning": "Neurological exam findings not explained by neuroimaging",
+                "type": "bool"
+            },
+            "horner_syndrome": {
+                "meaning": "Presence of Horner syndrome",
+                "type": "bool"
+            },
+            "lefort_fracture": {
+                "meaning": "Presence of Le Fort II or III fracture pattern",
+                "type": "bool"
+            },
+            "neck_soft_tissue_injury": {
+                "meaning": "Neck soft tissue injury (e.g. seatbelt sign, hanging, hematoma)",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The decision rule for recommending CT angiography (CTA) or digital subtraction angiography (DSA) to evaluate for blunt cerebrovascular injuries (BCVI) utilizes specific clinical and anatomical criteria. Imaging is advised if there are base of skull fractures involving the carotid canal or petrous temporal bone, any cervical spine fractures, unexplained neurological findings not shown on neuroimaging, presence of Horner syndrome, Le Fort II or III fractures, or neck soft tissue injuries like seatbelt signs, evidence of hanging, or significant hematomas. These indicators suggest a potential for vascular injury that warrants further investigation. If none of these conditions are present, there is no specific indication for CTA or DSA, allowing for more targeted and efficient use of diagnostic resources.",
+        "positive_label": [
+            "CTA or DSA study indicated to exclude BCVI"
+        ],
+        "negative_label": [
+            "No specific indication for CTA/DSA study"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_bcvi_memphis_pred",
+        "rule_text_augmented": "The decision rule for recommending CT angiography (CTA) or digital subtraction angiography (DSA) to evaluate for blunt cerebrovascular injuries (BCVI) utilizes specific clinical and anatomical criteria. Imaging is advised if there are base of skull fractures involving the carotid canal or petrous temporal bone, any cervical spine fractures, unexplained neurological findings not shown on neuroimaging, presence of Horner syndrome, Le Fort II or III fractures, or neck soft tissue injuries like seatbelt signs, evidence of hanging, or significant hematomas. These indicators suggest a potential for vascular injury that warrants further investigation. If none of these conditions are present, there is no specific indication for CTA or DSA, allowing for more targeted and efficient use of diagnostic resources.\nblunt cerebrovascular injury | BCVI | blunt vascular trauma | cerebrovascular trauma | blunt neck vessel injury | traumatic cerebrovascular injury | blunt carotid injury | blunt vertebral artery injury | blunt vascular damage\n\nbase of skull fracture | basilar skull fracture | skull base fracture | basal skull fracture | cranial base fracture | skull base trauma | posterior skull fracture\n\ncarotid canal | carotid passage | carotid artery canal | carotid groove | carotid tunnel | carotid channel | carotid foramen\n\npetrous temporal bone | petrous part of temporal bone | petrous bone | petrous region | petrous portion | petrous apex | petrous area\n\ncervical spine fracture | C-spine fracture | neck vertebra fracture | cervical vertebra fracture | broken neck | cervical column fracture | cervical trauma | C1-C7 fracture\n\nneurological exam | neuro exam | neurological assessment | neuro evaluation | neurological testing | neuro check | neurologic status check | CNS exam | clinical neurological examination\n\nunexplained neurological symptoms | unexplained neuro deficit | cause unknown | etiology unclear | reason not identified | neurologic symptoms without clear cause | clinical-radiological mismatch\n\nneuroimaging | brain imaging | neurological imaging | neuro scan | brain scan | CNS imaging | neuro radiology | CT brain | MRI brain | cerebrovascular imaging\n\nHorner syndrome | Horner's syndrome | HS | oculosympathetic palsy | Horner's triad | ptosis, miosis, anhidrosis | sympathetic dysfunction | disrupted sympathetic pathway | Horner\u2019s symptom complex\n\nLe Fort II fracture pattern | pyramidal fracture | Le Fort II fracture | midface fracture | Le Fort type II | Le Fort 2 fracture | NMF | nasomaxillary fracture\n\nLe Fort III fracture pattern | craniofacial disjunction | Le Fort III fracture | facial separation fracture | Le Fort type III | Le Fort 3 fracture | PFF | panfacial fracture | craniofacial trauma\n\nneck soft tissue injury | cervical soft tissue injury | neck tissue damage | soft tissue trauma to neck | cervical contusion | cervical hematoma | neck strain | cervical edema\n\nseatbelt sign | seat belt mark | seatbelt bruise | seatbelt injury mark | seatbelt abrasion | seatbelt contusion | cervical seatbelt injury | seatbelt-associated trauma\n\nhanging | strangulation by hanging | suspension trauma | asphyxiation by hanging | ligature suspension | hanging injury | ligature strangulation | non-fatal hanging\n\nhematoma | soft tissue hematoma | cervical hematoma | neck hematoma | bruise | blood collection | contusion | subcutaneous bleeding | localized bleeding | blood extravasation"
+    },
+    {
+        "label": "nexus_cspine",
+        "func_name": "nexus_cspine_pred",
+        "variables": {
+            "midline_tenderness": {
+                "meaning": "Presence of midline cervical tenderness",
+                "type": "bool"
+            },
+            "focal_deficit": {
+                "meaning": "Presence of focal neurological deficits",
+                "type": "bool"
+            },
+            "altered_alertness": {
+                "meaning": "Altered level of alertness",
+                "type": "bool"
+            },
+            "intoxication": {
+                "meaning": "Evidence of intoxication",
+                "type": "bool"
+            },
+            "distracting_injury": {
+                "meaning": "Presence of painful distracting injury",
+                "type": "bool"
+            },
+            "gcs": {
+                "meaning": "Glasgow Coma Scale score",
+                "type": "int"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The NEXUS criteria for cervical spine imaging decision-making utilizes a straightforward approach to determine the necessity of imaging based on five key variables: midline cervical tenderness, presence of focal neurological deficits, altered level of alertness, evidence of intoxication, and the presence of a painful distracting injury. According to the rule, if all these criteria are negative\u2014indicating that none of these conditions are present\u2014the patient is considered low risk for cervical spine injury, and imaging, such as X-rays or CT scans, is deemed unnecessary. Conversely, if any of these criteria are positive, indicating the presence of any such signs or symptoms, imaging is recommended to rule out potential cervical spine injuries effectively. This rule helps in making efficient and safe decisions about the use of imaging resources in trauma care.",
+        "positive_label": [
+            "Imaging recommended"
+        ],
+        "negative_label": [
+            "Imaging not necessary"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_nexus_cspine_pred",
+        "rule_text_augmented": "The NEXUS criteria for cervical spine imaging decision-making utilizes a straightforward approach to determine the necessity of imaging based on five key variables: midline cervical tenderness, presence of focal neurological deficits, altered level of alertness, evidence of intoxication, and the presence of a painful distracting injury. According to the rule, if all these criteria are negative\u2014indicating that none of these conditions are present\u2014the patient is considered low risk for cervical spine injury, and imaging, such as X-rays or CT scans, is deemed unnecessary. Conversely, if any of these criteria are positive, indicating the presence of any such signs or symptoms, imaging is recommended to rule out potential cervical spine injuries effectively. This rule helps in making efficient and safe decisions about the use of imaging resources in trauma care.\ncervical spine | C-spine | neck spine | cervical vertebrae | cervical region | neck bones | cervical column | cervical segment\n\nblunt trauma | blunt force | non-penetrating injury | closed injury | impact trauma | blunt force trauma | blunt injury\n\ncervical spine imaging | C-spine imaging | cervical X-ray | neck X-ray | cervical radiograph | cervical CT | C-spine CT | cervical MRI | C-spine MRI | neck scan\n\nmidline tenderness | midline cervical tenderness | central neck tenderness | midline neck pain | central cervical pain | C-spine tenderness | cervical spine pain\n\nfocal deficit | focal neurological deficit | localized neurodeficit | specific neurological impairment | focal neuro signs | targeted neuro deficit\n\naltered alertness | altered mental status | AMS | decreased awareness | reduced consciousness | impaired cognition | confused state | disoriented\n\nintoxication | ETOH intoxication | alcohol intoxication | drug intoxication | substance use | inebriation | under influence | impaired by drugs or alcohol\n\ndistracting injury | painful secondary injury | significant injury elsewhere | injury causing distraction | concurrent painful trauma | associated injury | secondary trauma"
+    },
+    {
+        "label": "nexus_chest_ct",
+        "func_name": "nexus_chest_ct_pred",
+        "variables": {
+            "major_injury": {
+                "meaning": "Whether the trauma is classified as major injury",
+                "type": "bool"
+            },
+            "abnormal_cxr": {
+                "meaning": "Presence of abnormal chest X-ray",
+                "type": "bool"
+            },
+            "distracting_injury": {
+                "meaning": "Presence of a distracting injury",
+                "type": "bool"
+            },
+            "chest_wall_tenderness": {
+                "meaning": "Presence of chest wall tenderness",
+                "type": "bool"
+            },
+            "sternum_tenderness": {
+                "meaning": "Presence of sternal tenderness",
+                "type": "bool"
+            },
+            "thoracic_spine_tenderness": {
+                "meaning": "Presence of thoracic spine tenderness",
+                "type": "bool"
+            },
+            "scapula_tenderness": {
+                "meaning": "Presence of scapular tenderness",
+                "type": "bool"
+            },
+            "rapid_deceleration": {
+                "meaning": "Presence of rapid deceleration mechanism",
+                "type": "bool"
+            },
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "int"
+            },
+            "gcs": {
+                "meaning": "Glasgow Coma Scale score",
+                "type": "int"
+            },
+            "hemodynamically_stable": {
+                "meaning": "Patient is hemodynamically stable",
+                "type": "bool"
+            },
+            "intubated": {
+                "meaning": "Whether the patient underwent intubation",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The decision rule for recommending chest CT scans in trauma patients uses a set of criteria to identify the need for further imaging based on the presence of certain signs and risk factors. The criteria include whether the trauma is classified as major, the presence of an abnormal chest X-ray, a distracting injury, and specific types of tenderness\u2014chest wall, sternal, thoracic spine, and scapular. Additionally, the presence of a rapid deceleration mechanism is considered, particularly in cases of minor injuries.\n\nThe rule states that a CT scan is indicated if there is an abnormal chest X-ray, any distracting injury, or any form of the specified tenderness. For patients not classified under major injuries, the indication for a CT scan is expanded to include those involved in rapid deceleration incidents. If any of these conditions are met, a CT scan is recommended. Conversely, if none of these factors are present, a CT scan is deemed unnecessary. This approach helps in assessing the severity of chest injuries and determining the need for detailed imaging to guide further management effectively.",
+        "positive_label": [
+            "CT indicated"
+        ],
+        "negative_label": [
+            "CT not indicated"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_nexus_chest_ct_pred",
+        "rule_text_augmented": "The decision rule for recommending chest CT scans in trauma patients uses a set of criteria to identify the need for further imaging based on the presence of certain signs and risk factors. The criteria include whether the trauma is classified as major, the presence of an abnormal chest X-ray, a distracting injury, and specific types of tenderness\u2014chest wall, sternal, thoracic spine, and scapular. Additionally, the presence of a rapid deceleration mechanism is considered, particularly in cases of minor injuries.\n\nThe rule states that a CT scan is indicated if there is an abnormal chest X-ray, any distracting injury, or any form of the specified tenderness. For patients not classified under major injuries, the indication for a CT scan is expanded to include those involved in rapid deceleration incidents. If any of these conditions are met, a CT scan is recommended. Conversely, if none of these factors are present, a CT scan is deemed unnecessary. This approach helps in assessing the severity of chest injuries and determining the need for detailed imaging to guide further management effectively.\nchest CT | chest computed tomography | CT thorax | thoracic CT scan | CT scan of the chest | chest CAT scan | CT chest angiography | CTA chest\n\nabnormal chest X-ray | irregular chest X-ray | atypical chest X-ray | abnormal thoracic X-ray | chest X-ray anomaly | abnormal radiographic findings | thoracic radiographic abnormality\n\ntrauma | injury | physical trauma | bodily harm | traumatic injury | trauma event | traumatic impact | chest trauma | blunt thoracic trauma | penetrating chest trauma\n\nmajor injury | severe injury | significant injury | critical injury | major trauma | high-impact trauma | extensive injury | life-threatening trauma\n\nminor injury | mild injury | minor trauma | low-severity injury | non-severe injury | limited trauma | mild thoracic trauma\n\nchest wall tenderness | sore chest wall | chest wall pain on palpation | tenderness of chest wall | painful chest wall | chest wall sensitivity | thoracic pain\n\nsternal tenderness | sore sternum | sternum pain on touch | tenderness of sternum | painful sternum | sternal sensitivity | sternal pain\n\nthoracic spine tenderness | sore thoracic spine | thoracic spine pain on touch | tenderness of thoracic spine | painful thoracic spine | thoracic spine discomfort\n\nscapular tenderness | sore scapula | scapula pain on palpation | tenderness of scapula | painful scapula | scapular discomfort | shoulder blade tenderness\n\nrapid deceleration mechanism | high-speed impact | sudden stop injury | abrupt deceleration | high-velocity trauma | rapid slowdown injury | seatbelt-related trauma | motor vehicle collision injury | MVC injury | MVA\n\ndistracting injury | secondary injury | concurrent injury | additional injury | coexisting injury | associated trauma | injury causing distraction"
+    },
+    {
+        "label": "ottawa_foot",
+        "func_name": "ottawa_foot_pred",
+        "variables": {
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "float"
+            },
+            "blunt_trauma": {
+                "meaning": "Whether the injury was caused by blunt trauma",
+                "type": "bool"
+            },
+            "acute_injury": {
+                "meaning": "Whether the injury is acute (not subacute/chronic)",
+                "type": "bool"
+            },
+            "hindfoot_forefoot": {
+                "meaning": "Whether the injury involves hindfoot or forefoot",
+                "type": "bool"
+            },
+            "midfoot_pain": {
+                "meaning": "Presence of pain in the midfoot",
+                "type": "bool"
+            },
+            "weight_bearing_difficulty": {
+                "meaning": "Inability to bear weight both immediately after injury and in ED (4 steps)",
+                "type": "bool"
+            },
+            "navicular_tenderness": {
+                "meaning": "Presence of tenderness at the navicular",
+                "type": "bool"
+            },
+            "fifth_metatarsal_tenderness": {
+                "meaning": "Presence of tenderness at base of fifth metatarsal",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The Ottawa Foot Rules are used to decide whether an X-ray is necessary for foot injuries in a clinical setting. The decision rule considers a patient's age, the nature of the injury, and specific symptoms to streamline the use of X-rays, reducing unnecessary imaging and exposure. For the rule to apply, the patient must be between the ages of 6 and 55, have sustained an acute injury through blunt trauma, and the injury should not involve the hindfoot or forefoot directly.\n\nThe primary criterion for considering an X-ray is the presence of pain in the midfoot. If the patient does not experience midfoot pain, an X-ray is deemed unnecessary. However, if there is midfoot pain, further criteria are assessed: the inability to bear weight both immediately after the injury and upon evaluation in the emergency department, or tenderness at specific points such as the navicular or the base of the fifth metatarsal. If any of these additional symptoms are present, an X-ray is required to assess the extent of the injury. If these criteria are not met, even with midfoot pain, an X-ray is not recommended. This decision-making process helps in identifying cases where X-rays are most likely to be diagnostic, thus optimizing patient care and resource allocation.",
+        "positive_label": [
+            "X-ray required"
+        ],
+        "negative_label": [
+            "X-ray not required",
+            "Rule does not apply"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_ottawa_foot_pred",
+        "rule_text_augmented": "The Ottawa Foot Rules are used to decide whether an X-ray is necessary for foot injuries in a clinical setting. The decision rule considers a patient's age, the nature of the injury, and specific symptoms to streamline the use of X-rays, reducing unnecessary imaging and exposure. For the rule to apply, the patient must be between the ages of 6 and 55, have sustained an acute injury through blunt trauma, and the injury should not involve the hindfoot or forefoot directly.\n\nThe primary criterion for considering an X-ray is the presence of pain in the midfoot. If the patient does not experience midfoot pain, an X-ray is deemed unnecessary. However, if there is midfoot pain, further criteria are assessed: the inability to bear weight both immediately after the injury and upon evaluation in the emergency department, or tenderness at specific points such as the navicular or the base of the fifth metatarsal. If any of these additional symptoms are present, an X-ray is required to assess the extent of the injury. If these criteria are not met, even with midfoot pain, an X-ray is not recommended. This decision-making process helps in identifying cases where X-rays are most likely to be diagnostic, thus optimizing patient care and resource allocation.\nfoot | pedal region | foot area | foot region | foot structure | foot anatomy\n\nX-ray | XR | radiograph | imaging | foot X-ray | X-ray scan | X-ray imaging | radiographic image\n\nblunt trauma | blunt inj | non-penetrating injury | impact injury | contusion | blunt force trauma | closed injury\n\nacute | sudden onset | immediate | rapid onset | short-term\n\nhindfoot | rearfoot | posterior foot | back of the foot | heel region\n\nforefoot | anterior foot | front of the foot | ball of the foot | toe region\n\npain in the midfoot | midfoot pain | discomfort in midfoot | aching midfoot | midfoot soreness | midfoot discomfort\n\nweight-bearing difficulty | WB difficulty | inability to walk 4 steps | trouble walking | difficulty standing | impaired ambulation | walking difficulty | WB pain | NWB | unable to bear weight\n\nnavicular tenderness | pain on navicular bone | sore navicular | tenderness in navicular area | navicular bone pain | navicular sensitivity\n\nfifth metatarsal tenderness | pain on fifth metatarsal | sore fifth metatarsal | tenderness in fifth metatarsal area | fifth metatarsal pain | fifth metatarsal sensitivity"
+    },
+    {
+        "label": "ottawa_knee",
+        "func_name": "ottawa_knee_pred",
+        "variables": {
+            "acute_injury": {
+                "meaning": "Whether the patient has an acute knee injury",
+                "type": "bool"
+            },
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "float"
+            },
+            "patella_tenderness": {
+                "meaning": "Presence of isolated tenderness of the patella",
+                "type": "bool"
+            },
+            "fibular_head_tenderness": {
+                "meaning": "Presence of tenderness at the fibular head",
+                "type": "bool"
+            },
+            "limited_flexion": {
+                "meaning": "Inability to flex knee to 90 degrees",
+                "type": "bool"
+            },
+            "weight_bearing_difficulty": {
+                "meaning": "Inability to walk 4 steps both immediately after injury and in the ED",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The Ottawa Knee Rules provide a guideline for determining when knee X-rays are necessary in cases of acute knee injuries, aimed at reducing unnecessary imaging. These rules apply specifically to acute injuries and recommend an X-ray if the patient is over 55 years old, has isolated tenderness of the patella, exhibits tenderness at the fibular head, shows an inability to flex the knee to 90 degrees, or cannot bear weight to walk four steps both immediately after the injury and in the emergency department. The presence of any one of these criteria suggests a significant potential for fractures or serious internal damage, thus necessitating further diagnostic imaging to ensure appropriate treatment and management. If none of these conditions are met, the rules indicate that an X-ray is not required, helping to streamline patient care and reduce unnecessary radiation exposure.\n",
+        "positive_label": [
+            "X-ray required"
+        ],
+        "negative_label": [
+            "X-ray not required"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_ottawa_knee_pred",
+        "rule_text_augmented": "The Ottawa Knee Rules provide a guideline for determining when knee X-rays are necessary in cases of acute knee injuries, aimed at reducing unnecessary imaging. These rules apply specifically to acute injuries and recommend an X-ray if the patient is over 55 years old, has isolated tenderness of the patella, exhibits tenderness at the fibular head, shows an inability to flex the knee to 90 degrees, or cannot bear weight to walk four steps both immediately after the injury and in the emergency department. The presence of any one of these criteria suggests a significant potential for fractures or serious internal damage, thus necessitating further diagnostic imaging to ensure appropriate treatment and management. If none of these conditions are met, the rules indicate that an X-ray is not required, helping to streamline patient care and reduce unnecessary radiation exposure.\n\nknee | patella | kneecap | knee joint | joint of the leg | leg joint\n\nX-ray | XR | radiograph | imaging | X-ray scan | radiographic image | X-ray exam | X-ray film\n\nacute knee injury | sudden knee injury | recent knee trauma | acute patellar injury | sudden knee damage | recent knee injury\n\nisolated patellar tenderness | patellar pain | sore kneecap | kneecap tenderness | painful patella | patellar soreness\n\nfibular head tenderness | pain at fibular head | sore fibular head | fibular pain | tenderness in fibula | fibular head soreness\n\nlimited knee flexion | inability to flex knee to 90 degrees | restricted knee bending | reduced knee flexion | knee flexion limitation | flexion restriction | knee movement restriction\n\nweight-bearing difficulty | WB difficulty | inability to walk 4 steps | trouble bearing weight | difficulty walking | WB pain | walking difficulty | impaired WB | walking impairment | NWB"
+    },
+    {
+        "label": "ottawa_ankle",
+        "func_name": "ottawa_ankle_pred",
+        "variables": {
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "float"
+            },
+            "blunt_trauma": {
+                "meaning": "Whether the injury was caused by blunt trauma",
+                "type": "bool"
+            },
+            "acute_injury": {
+                "meaning": "Whether the injury is acute (not subacute/chronic)",
+                "type": "bool"
+            },
+            "malleolar_pain": {
+                "meaning": "Presence of pain near the malleoli",
+                "type": "bool"
+            },
+            "weight_bearing_difficulty": {
+                "meaning": "Inability to bear weight both immediately after injury and in ED (4 steps)",
+                "type": "bool"
+            },
+            "lateral_malleolus_tenderness": {
+                "meaning": "Tenderness at posterior edge or tip of lateral malleolus",
+                "type": "bool"
+            },
+            "medial_malleolus_tenderness": {
+                "meaning": "Tenderness at posterior edge or tip of medial malleolus",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The Ottawa Ankle Rules are a clinical tool used to determine the necessity of X-rays in evaluating ankle injuries, aiming to minimize unnecessary imaging. This decision-making process applies specifically to patients who experience acute blunt trauma injuries to the ankle. To be eligible for assessment under these rules, patients must be between the ages of 6 and 55 years and have sustained an acute injury. \n\nIf a patient falls outside these age limits, has not experienced blunt trauma, or the injury is not acute, the rules do not apply, and other assessment methods should be considered. Within the eligible group, the primary evaluation starts with checking for pain near the malleoli. If there is no malleolar pain, an X-ray is generally not required. However, if malleolar pain is present, further criteria such as the inability to bear weight both immediately after the injury and in the emergency department, or tenderness at the posterior edge or tip of either the lateral or medial malleolus, will mandate an X-ray to rule out fractures. If these additional criteria are not met despite the presence of malleolar pain, an X-ray remains unnecessary. This streamlined approach helps ensure that X-rays are used judiciously, focusing on cases with a significant likelihood of fractures.",
+        "positive_label": [
+            "X-ray required"
+        ],
+        "negative_label": [
+            "X-ray not required",
+            "Rule does not apply"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_ottawa_ankle_pred",
+        "rule_text_augmented": "The Ottawa Ankle Rules are a clinical tool used to determine the necessity of X-rays in evaluating ankle injuries, aiming to minimize unnecessary imaging. This decision-making process applies specifically to patients who experience acute blunt trauma injuries to the ankle. To be eligible for assessment under these rules, patients must be between the ages of 6 and 55 years and have sustained an acute injury. \n\nIf a patient falls outside these age limits, has not experienced blunt trauma, or the injury is not acute, the rules do not apply, and other assessment methods should be considered. Within the eligible group, the primary evaluation starts with checking for pain near the malleoli. If there is no malleolar pain, an X-ray is generally not required. However, if malleolar pain is present, further criteria such as the inability to bear weight both immediately after the injury and in the emergency department, or tenderness at the posterior edge or tip of either the lateral or medial malleolus, will mandate an X-ray to rule out fractures. If these additional criteria are not met despite the presence of malleolar pain, an X-ray remains unnecessary. This streamlined approach helps ensure that X-rays are used judiciously, focusing on cases with a significant likelihood of fractures.\nankle | ankle joint | talocrural joint | ankle region | tarsal joint | ankle area\n\nX-ray | XR | radiograph | ankle X-ray | X-ray imaging | radiographic image | X-ray scan | X-ray examination\n\nblunt trauma | blunt inj | non-penetrating injury | blunt force injury | contusion | impact injury | closed injury\n\nacute | sudden onset | immediate | rapid onset | short-term | abrupt\n\npain near the malleoli | pain around the ankle bones | discomfort near malleoli | soreness near malleoli | aching around malleoli | malleolar pain\n\nweight-bearing difficulty | WB difficulty | inability to walk 4 steps | trouble walking | difficulty standing | impaired WB | walking difficulty | NWB | unable to bear weight\n\ntenderness at posterior edge of lateral malleolus | pain at back of lateral malleolus | soreness at posterior lateral malleolus | sensitivity at rear of lateral malleolus | discomfort at posterior lateral malleolus\n\ntenderness at tip of lateral malleolus | pain at apex of lateral malleolus | soreness at tip of lateral malleolus | sensitivity at top of lateral malleolus | discomfort at tip of lateral malleolus\n\ntenderness at posterior edge of medial malleolus | pain at back of medial malleolus | soreness at posterior medial malleolus | sensitivity at rear of medial malleolus | discomfort at posterior medial malleolus\n\ntenderness at tip of medial malleolus | pain at apex of medial malleolus | soreness at tip of medial malleolus | sensitivity at top of medial malleolus | discomfort at tip of medial malleolus\n"
+    },
+    {
+        "label": "pecarn_cspine",
+        "func_name": "pecarn_cspine_pred",
+        "variables": {
+            "gcs": {
+                "meaning": "Glasgow Coma Scale score",
+                "type": "int"
+            },
+            "avpu": {
+                "meaning": "AVPU scale for level of consciousness (Alert, Voice, Pain, Unresponsive)",
+                "type": "string"
+            },
+            "abnormal_breathing": {
+                "meaning": "Presence of abnormal breathing patterns",
+                "type": "bool"
+            },
+            "abnormal_airway": {
+                "meaning": "Presence of abnormal airway conditions",
+                "type": "bool"
+            },
+            "abnormal_circulation": {
+                "meaning": "Presence of abnormal circulation signs",
+                "type": "bool"
+            },
+            "focal_neuro_deficits": {
+                "meaning": "Presence of focal neurological deficits",
+                "type": "bool"
+            },
+            "ams": {
+                "meaning": "Altered Mental Status",
+                "type": "bool"
+            },
+            "neck_pain": {
+                "meaning": "Presence of neck pain",
+                "type": "bool"
+            },
+            "neck_tenderness": {
+                "meaning": "Presence of neck tenderness",
+                "type": "bool"
+            },
+            "head_injury": {
+                "meaning": "Presence of head injury",
+                "type": "bool"
+            },
+            "torso_injury": {
+                "meaning": "Presence of torso injury",
+                "type": "bool"
+            },
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "float"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The PECARN cervical spine prediction rule is a clinical guideline used to determine the necessary imaging for patients with potential cervical spine injuries based on their clinical presentation. For those exhibiting high-risk factors\u2014such as a Glasgow Coma Scale (GCS) score between 3 and 8, being unresponsive on the AVPU scale, or showing signs of abnormal breathing, airway complications, circulation issues, or focal neurological deficits\u2014a CT scan is recommended due to the high risk of significant injury. Patients presenting with moderate-risk factors, including a GCS score between 9 and 14, responsiveness only to voice or pain, altered mental status, neck pain or tenderness, or head and torso injuries, are advised to undergo a plain x-ray to check for less severe injuries. If none of these risk factors are present, and the patient scores high on the GCS and is alert, clinical clearance may be considered, suggesting a low likelihood of cervical spine injury, thus avoiding unnecessary imaging. This rule streamlines the decision-making process in emergency settings, ensuring that patients receive appropriate and timely care while conserving medical resources.",
+        "positive_label": [
+            "Consider CT",
+            "Consider plain x-ray"
+        ],
+        "negative_label": [
+            "Consider clinical clearance"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_pecarn_cspine_pred",
+        "rule_text_augmented": "The PECARN cervical spine prediction rule is a clinical guideline used to determine the necessary imaging for patients with potential cervical spine injuries based on their clinical presentation. For those exhibiting high-risk factors\u2014such as a Glasgow Coma Scale (GCS) score between 3 and 8, being unresponsive on the AVPU scale, or showing signs of abnormal breathing, airway complications, circulation issues, or focal neurological deficits\u2014a CT scan is recommended due to the high risk of significant injury. Patients presenting with moderate-risk factors, including a GCS score between 9 and 14, responsiveness only to voice or pain, altered mental status, neck pain or tenderness, or head and torso injuries, are advised to undergo a plain x-ray to check for less severe injuries. If none of these risk factors are present, and the patient scores high on the GCS and is alert, clinical clearance may be considered, suggesting a low likelihood of cervical spine injury, thus avoiding unnecessary imaging. This rule streamlines the decision-making process in emergency settings, ensuring that patients receive appropriate and timely care while conserving medical resources.\ncervical spine injury | C-spine injury | neck spine injury | cervical trauma | cervical vertebrae injury | neck trauma | cervical column injury | cervical fracture\n\npediatric | child | pediatric patient | pediatric trauma | young patient | pediatric age group | pediatric population\n\nemergency department | ED | ER | emergency room | A&E | accident and emergency | emergency unit | trauma bay\n\nblunt trauma | blunt force | non-penetrating injury | closed trauma | impact trauma | blunt force trauma | blunt injury\n\nGCS | Glasgow Coma Scale | GCS score | coma scale | consciousness scale | neurological status | neuro assessment\n\nAVPU | AVPU scale | alert, voice, pain, unresponsive scale | AVPU consciousness scale | responsiveness scale\n\nalert | conscious | awake | responsive | oriented | interactive | neurologically intact\n\nvoice | verbal response | responds to voice | voice stimulus response | follows commands\n\npain | pain response | reacts to pain | withdrawal to pain | localizes pain | painful stimulus reaction\n\nunresponsive | non-responsive | no response | unconscious | unarousable | obtunded | comatose\n\nabnormal breathing | irregular respirations | disordered breathing | respiratory distress | breathing irregularity | dyspnea\n\nabnormal airway conditions | airway obstruction | compromised airway | airway compromise | upper airway issue | stridor | airway patency issue\n\nabnormal circulation signs | poor perfusion | weak pulses | abnormal hemodynamics | circulatory collapse | hypotension | altered circulation\n\nfocal neurological deficits | focal neuro deficit | localized neuro deficit | unilateral weakness | nerve dysfunction | motor or sensory loss\n\naltered mental status | AMS | confusion | disorientation | mental status change | cognitive impairment | altered LOC | delirium\n\nneck pain | cervical pain | C-spine pain | neck discomfort | cervicalgia | posterior neck pain\n\nneck tenderness | cervical tenderness | midline tenderness | spinal tenderness | neck soreness | cervical sensitivity\n\nhead injury | cranial trauma | skull fracture | TBI | traumatic brain injury | head trauma | scalp injury\n\ntorso injury | trunk trauma | chest trauma | abdominal trauma | thoracic injury | blunt torso injury | rib fracture"
+    },
+    {
+        "label": "pecarn_tbi",
+        "func_name": "pecarn_tbi_pred",
+        "variables": {
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "float"
+            },
+            "gcs": {
+                "meaning": "Glasgow Coma Scale score",
+                "type": "int"
+            },
+            "altered_mental_status": {
+                "meaning": "Presence of altered mental status",
+                "type": "bool"
+            },
+            "skull_fracture": {
+                "meaning": "Presence of a skull fracture",
+                "type": "bool"
+            },
+            "scalp_hematoma": {
+                "meaning": "Presence of a scalp hematoma",
+                "type": "bool"
+            },
+            "loc_history": {
+                "meaning": "History of loss of consciousness",
+                "type": "bool"
+            },
+            "severe_mechanism": {
+                "meaning": "Involvement in a severe injury mechanism",
+                "type": "bool"
+            },
+            "not_acting_normally": {
+                "meaning": "Patient not behaving as usual according to parents/guardians",
+                "type": "bool"
+            },
+            "vomiting_history": {
+                "meaning": "History of vomiting after the injury",
+                "type": "bool"
+            },
+            "severe_headache": {
+                "meaning": "Presence of severe headache",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The PECARN TBI prediction rule is specifically designed to assess the necessity of CT scans in pediatric patients who may have sustained a traumatic brain injury. For children under 2 years old, a CT scan is recommended if they exhibit a Glasgow Coma Scale (GCS) score of 14, altered mental status, or have a visible skull fracture, indicating a higher risk of serious injury. A conditional CT scan is considered for symptoms such as scalp hematoma, history of loss of consciousness, severe injury mechanisms, or abnormal behavior as reported by parents. Clinical clearance is suggested if none of these conditions are met. For children aged 2 years and older, the criteria for a CT scan include the same GCS score, altered mental status, or skull fracture. Additional considerations for a conditional CT scan include a history of loss of consciousness, recent vomiting, severe mechanisms of injury, or severe headaches. If these conditions are absent, clinical clearance is again recommended. This approach helps in effectively managing the use of CT scans to ensure those at significant risk are promptly and accurately assessed while minimizing unnecessary radiation exposure in children with less severe symptoms.",
+        "positive_label": [
+            "CT scan",
+            "Conditional CT Scan"
+        ],
+        "negative_label": [
+            "Clinical clearance"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_pecarn_tbi_pred",
+        "rule_text_augmented": "The PECARN TBI prediction rule is specifically designed to assess the necessity of CT scans in pediatric patients who may have sustained a traumatic brain injury. For children under 2 years old, a CT scan is recommended if they exhibit a Glasgow Coma Scale (GCS) score of 14, altered mental status, or have a visible skull fracture, indicating a higher risk of serious injury. A conditional CT scan is considered for symptoms such as scalp hematoma, history of loss of consciousness, severe injury mechanisms, or abnormal behavior as reported by parents. Clinical clearance is suggested if none of these conditions are met. For children aged 2 years and older, the criteria for a CT scan include the same GCS score, altered mental status, or skull fracture. Additional considerations for a conditional CT scan include a history of loss of consciousness, recent vomiting, severe mechanisms of injury, or severe headaches. If these conditions are absent, clinical clearance is again recommended. This approach helps in effectively managing the use of CT scans to ensure those at significant risk are promptly and accurately assessed while minimizing unnecessary radiation exposure in children with less severe symptoms.\nhead injury | cranial injury | head wound | head trauma | brain injury | TBI | traumatic brain injury | head contusion | head impact | brain trauma | closed head injury | blunt head trauma | penetrating head injury\n\npediatric | child | children | pediatric patient | pediatric age group | young patient | pediatric population | infant | toddler | adolescent | neonatal | kids\n\nemergency department | ED | ER | emergency room | casualty | A&E | accident and emergency | urgent care | trauma center | hospital admission\n\nGCS | Glasgow Coma Scale | GCS score | coma scale | consciousness level | neurological status | GCS rating | initial GCS | GCS assessment\n\naltered mental status | AMS | confusion | disorientation | altered consciousness | mental confusion | cognitive disturbance | impaired awareness | decreased responsiveness | obtunded | lethargic | stupor | delirium | unconsciousness\n\nskull fracture | cranial fracture | skull break | skull crack | cranial break | skull injury | basilar skull fracture | depressed skull fracture | linear skull fracture\n\nscalp hematoma | scalp bruise | scalp swelling | scalp contusion | head bruise | scalp bump | scalp injury | cephalohematoma\n\nhistory of loss of consciousness | LOC history | previous unconsciousness | fainting history | blackout history | syncope history | transient LOC | passed out before\n\nsevere injury mechanism | high-impact injury | major trauma cause | significant trauma mechanism | serious injury cause | high-energy impact | severe trauma mechanism | penetrating head trauma | blunt force impact | acceleration-deceleration injury | rotational injury\n\npedestrian struck | auto vs pedestrian accident | pedestrian hit by vehicle | pedestrian collision\n\nejection from vehicle | thrown from vehicle | motor vehicle ejection | high-impact ejection | occupant ejection | MVC | MVA\n\nfall from height | fall >3 feet | fall down stairs | significant fall | elevated fall injury | high-risk fall | ground-level fall | fall-related head trauma | GLF\n\nnot acting normally | not behaving as usual | altered behavior | unusual behavior | atypical actions | abnormal conduct | behaving differently | personality change | post-traumatic behavioral change\n\nhistory of vomiting after the injury | post-injury vomiting history | emesis after trauma | vomiting post-trauma | nausea after injury | post-trauma emesis | vomiting history post-injury | persistent vomiting\n\nsevere headache | intense headache | migraine | throbbing head pain | debilitating headache | splitting headache | post-traumatic headache | severe cephalalgia | new-onset headache post-injury"
+    },
+    {
+        "label": "pecarn_iai",
+        "func_name": "pecarn_iai_pred",
+        "variables": {
+            "gcs": {
+                "meaning": "Glasgow Coma Scale score",
+                "type": "int"
+            },
+            "abdominal_wall_trauma": {
+                "meaning": "Presence of trauma to the abdominal wall",
+                "type": "bool"
+            },
+            "seatbelt_sign": {
+                "meaning": "Presence of seatbelt sign (bruising or abrasion across abdomen from seatbelt",
+                "type": "bool"
+            },
+            "abdominal_tenderness": {
+                "meaning": "Presence of tenderness upon abdominal examination",
+                "type": "bool"
+            },
+            "thoracic_wall_trauma": {
+                "meaning": "Presence of trauma to the thoracic wall",
+                "type": "bool"
+            },
+            "abdominal_pain": {
+                "meaning": "Patient reports abdominal pain",
+                "type": "bool"
+            },
+            "decreased_breathing_sounds": {
+                "meaning": "Presence of decreased breathing sounds upon auscultation",
+                "type": "bool"
+            },
+            "vomiting": {
+                "meaning": "Presence of vomiting",
+                "type": "bool"
+            },
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "float"
+            },
+            "penetrating_trauma": {
+                "meaning": "Whether the patient underwent penetrating trauma",
+                "type": "bool"
+            },
+            "trauma_within_24_hrs": {
+                "meaning": "Whether the patient underwent trauma within 24 hours",
+                "type": "bool"
+            },
+            "is_pregnant": {
+                "meaning": "Whether the patient is pregnant",
+                "type": "bool"
+            },
+            "pre_existing_neurologic_disorders": {
+                "meaning": "Whether the patient has any pre-existing neurologic disorders",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The PECARN IAI (Intra-Abdominal Injury) prediction rule is designed to guide the use of CT scans in evaluating pediatric patients for potential abdominal injuries, optimizing the detection of significant internal injuries while minimizing unnecessary radiation exposure. The rule prioritizes a CT scan for patients with a Glasgow Coma Scale (GCS) score below 14, evidence of trauma to the abdominal wall, or the presence of a seatbelt sign\u2014indicators associated with a higher probability of severe intra-abdominal injuries. Additionally, the presence of abdominal tenderness alone triggers consideration for a CT scan, reflecting moderate risk. Lower risk factors, such as thoracic wall trauma, abdominal pain, decreased breathing sounds, or vomiting, also suggest a potential but less likely need for a CT scan to exclude serious injuries. In cases where none of these signs or symptoms are present, the rule recommends clinical clearance, indicating a low risk of intra-abdominal injury and reducing the likelihood of unnecessary diagnostic imaging. This structured approach ensures that CT imaging is judiciously used, focusing on those at substantial risk and safeguarding against overexposure to radiation in children.",
+        "positive_label": [
+            "CT scan"
+        ],
+        "negative_label": [
+            "Clinical clearance"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_pecarn_iai_pred",
+        "rule_text_augmented": "The PECARN IAI (Intra-Abdominal Injury) prediction rule is designed to guide the use of CT scans in evaluating pediatric patients for potential abdominal injuries, optimizing the detection of significant internal injuries while minimizing unnecessary radiation exposure. The rule prioritizes a CT scan for patients with a Glasgow Coma Scale (GCS) score below 14, evidence of trauma to the abdominal wall, or the presence of a seatbelt sign\u2014indicators associated with a higher probability of severe intra-abdominal injuries. Additionally, the presence of abdominal tenderness alone triggers consideration for a CT scan, reflecting moderate risk. Lower risk factors, such as thoracic wall trauma, abdominal pain, decreased breathing sounds, or vomiting, also suggest a potential but less likely need for a CT scan to exclude serious injuries. In cases where none of these signs or symptoms are present, the rule recommends clinical clearance, indicating a low risk of intra-abdominal injury and reducing the likelihood of unnecessary diagnostic imaging. This structured approach ensures that CT imaging is judiciously used, focusing on those at substantial risk and safeguarding against overexposure to radiation in children.\nintra-abdominal injury | intra-abdominal trauma | internal abdominal injury | abdominal trauma | IAI\n\npediatric | child | children | ped patient | ped age group | young patient | ped population\n\nwithin 24 hours of injury | first 24 hours post-injury | within a day of trauma | initial 24h after injury | <24h post-injury\n\nGCS | Glasgow Coma Scale | GCS score | coma scale | neuro score | consciousness level\n\nblunt abdominal trauma | blunt force to abdomen | abdominal contusion | closed abdominal injury | BAT\n\nabdominal wall trauma | abdominal wall injury | injury to abd wall | contusion of abd wall | abd wall damage\n\nseatbelt sign | seatbelt bruise | seatbelt mark | seatbelt injury | seatbelt abrasion\n\nabdominal tenderness | abd tenderness | tender abd | pain on abd palpation | sore abdomen\n\nthoracic wall trauma | thoracic injury | chest wall trauma | chest wall contusion | thoracic contusion\n\nabdominal pain | abd pain | stomach pain | belly pain | epigastric pain\n\ndecreased breath sounds | reduced breath sounds | diminished breath sounds | decreased lung sounds | diminished respiratory sounds\n\nvomiting | emesis | N/V | nausea with vomiting | puke"
+    },
+    {
+        "label": "pittsburgh_knee",
+        "func_name": "pittsburgh_knee_pred",
+        "variables": {
+            "age": {
+                "meaning": "Patient's age in years",
+                "type": "int"
+            },
+            "fall_or_trauma": {
+                "meaning": "History of fall or blunt trauma to the knee",
+                "type": "bool"
+            },
+            "cannot_walk_four_steps": {
+                "meaning": "Patient is unable to take four steps, regardless of age",
+                "type": "bool"
+            },
+            "acute_injury": {
+                "meaning": "Whether the injury is acute (not subacute/chronic)",
+                "type": "bool"
+            },
+            "injury_past_one_week": {
+                "meaning": "Whether the patient had an injury in the past week",
+                "type": "bool"
+            },
+            "trauma_relevant": {
+                "meaning": "Whether the patient underwent blunt trauma or acute injury (not burns)",
+                "type": "bool"
+            }
+        },
+        "rule_text": "The Pittsburgh Knee Rules are designed to guide clinicians in deciding when knee radiographs are necessary for patients presenting with knee injuries. This decision rule uses simple criteria based on age, the nature of the injury, and the patient's ability to ambulate. Specifically, the rule recommends a knee radiograph if the patient has a history of fall or blunt trauma to the knee and falls outside the age range of 12 to 50 years, or if the patient, regardless of age, cannot walk four steps. If a patient meets either of these conditions\u2014a traumatic event combined with being younger than 12 or older than 50, or an inability to walk four steps\u2014a knee radiograph is indicated to rule out fractures or serious injuries. Conversely, if none of these criteria are met, a knee radiograph is typically not necessary, potentially reducing unnecessary imaging and associated costs while streamlining patient care.",
+        "positive_label": [
+            "Knee radiograph indicated"
+        ],
+        "negative_label": [
+            "Knee radiograph not indicated"
+        ],
+        "has_io_criteria": true,
+        "io_criteria_func_name": "criteria_pittsburgh_knee_pred",
+        "rule_text_augmented": "The Pittsburgh Knee Rules are designed to guide clinicians in deciding when knee radiographs are necessary for patients presenting with knee injuries. This decision rule uses simple criteria based on age, the nature of the injury, and the patient's ability to ambulate. Specifically, the rule recommends a knee radiograph if the patient has a history of fall or blunt trauma to the knee and falls outside the age range of 12 to 50 years, or if the patient, regardless of age, cannot walk four steps. If a patient meets either of these conditions\u2014a traumatic event combined with being younger than 12 or older than 50, or an inability to walk four steps\u2014a knee radiograph is indicated to rule out fractures or serious injuries. Conversely, if none of these criteria are met, a knee radiograph is typically not necessary, potentially reducing unnecessary imaging and associated costs while streamlining patient care.\nknee pain | knee discomfort | aching knee | sore knee | knee soreness | knee ache | knee tenderness | painful knee\n\nradiographic imaging | XR | X-ray | radiograph | imaging study | diagnostic imaging | radiology scan | radiological exam | X-ray imaging\n\nhistory of fall | previous fall | past fall | fall incident | fall history | prior fall | fall occurrence | fall event\n\nhistory of blunt trauma to the knee | knee contusion history | knee impact history | knee bruise history | past knee trauma | knee trauma event | previous knee injury | prior knee injury | hx of knee trauma\n\nunable to take four steps | difficulty walking | can't walk 4 steps | unable to walk 4 steps | 4-step limitation | walking restriction | limited ambulation | impaired walking ability | WB difficulty | walking difficulty | NWB | non-weight bearing"
+    }
+]
